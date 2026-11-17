@@ -1,0 +1,40 @@
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #102f5e;
+  background: #eaf5ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, #eaf5ff 0%, #f5faff 100%);
+  color: #102f5e;
+  margin: 0;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
