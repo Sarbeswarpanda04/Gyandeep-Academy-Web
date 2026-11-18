@@ -23,6 +23,15 @@ const classes = [
   { name: "Class 10", title: "Take the next step with confidence" },
 ];
 
+const teachers = [
+  { name: "Avijit Panda", initials: "AP", imageUrl: "./Teachers/Avijit-panda.png" },
+  { name: "Sarbeswar Panda", initials: "SP", imageUrl: "./Teachers/Sarbeswar-panda.png" },
+  { name: "Gyanaranjan Panda", initials: "GP", imageUrl: "./Teachers/Gyanaranjan-panda.png" },
+  { name: "Chumki Behera", initials: "CB", imageUrl: "./Teachers/Chumki-behera.png" },
+  { name: "Bishnupriya Panda", initials: "BP", imageUrl: "./Teachers/Bishnupriya-panda.png" },
+  { name: "Sandhyarani Panda", initials: "SP", imageUrl: "./Teachers/Sandhyarani-panda.png" },
+];
+
 const Content = ({ onAdmissionClick }) => {
   return (
     <>
@@ -46,6 +55,31 @@ const Content = ({ onAdmissionClick }) => {
               </span>
               <h3>{highlight.title}</h3>
               <p>{highlight.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="teachers section-wrap" id="teachers" aria-labelledby="teachers-title">
+        <div className="teachers__intro">
+          <p className="section-eyebrow">Our faculty</p>
+          <h2 className="section-title" id="teachers-title">
+            Meet our <span>teachers.</span>
+          </h2>
+        </div>
+        <div className="teachers__grid">
+          {teachers.map((teacher) => (
+            <article className="teacher-card" key={teacher.name}>
+              <div className="teacher-card__portrait">
+                {teacher.imageUrl ? (
+                  <img src={teacher.imageUrl} alt={teacher.name} />
+                ) : (
+                  <span role="img" aria-label={`Placeholder portrait for ${teacher.name}`}>
+                    {teacher.initials}
+                  </span>
+                )}
+              </div>
+              <h3>{teacher.name}</h3>
             </article>
           ))}
         </div>

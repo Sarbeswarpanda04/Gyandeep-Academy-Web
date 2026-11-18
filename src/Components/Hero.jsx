@@ -34,11 +34,10 @@ const Hero = ({ onAdmissionClick }) => {
           Learning begins with inspiration
         </p>
         <h1 id="hero-title">
-          Give your child a <span>brighter future.</span>
+          Gyandeep Academy <span>Khordha.</span>
         </h1>
         <p className="hero__description">
-          Discover a welcoming place to learn, ask questions, and build the
-          confidence to reach for what comes next.
+          Coaching Classes in Khordha. for Class 5th to 10th CBSE and BSE.
         </p>
         <div className="hero__actions">
           <button

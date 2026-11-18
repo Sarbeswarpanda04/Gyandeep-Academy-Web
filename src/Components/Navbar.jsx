@@ -66,6 +66,7 @@ const Navbar = ({
         <ul>
           <li><a href="#home" onClick={(event) => handleSectionClick(event, "home")}>Home</a></li>
           <li><a href="#about" onClick={(event) => handleSectionClick(event, "about")}>About</a></li>
+          <li><a href="#teachers" onClick={(event) => handleSectionClick(event, "teachers")}>Teachers</a></li>
           <li><a href="#classes" onClick={(event) => handleSectionClick(event, "classes")}>Classes</a></li>
           <li>
             <a

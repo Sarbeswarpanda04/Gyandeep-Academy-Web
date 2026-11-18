@@ -5,6 +5,7 @@ import Content from "./Components/Content";
 import Footer from "./Components/Footer";
 import AdmissionModal from "./Components/AdmissionModal";
 import Books from "./Components/Books";
+import NoticeBar from "./Components/Notice-bar";
 
 const getCurrentRoute = () => {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -127,6 +128,7 @@ const App = () => {
         onAdmissionClick={() => setIsAdmissionOpen(true)}
         onNavigateHome={() => navigateToSection("home")}
       />
+      <NoticeBar />
       {isAdmissionOpen && (
         <AdmissionModal onClose={() => setIsAdmissionOpen(false)} />
       )}
