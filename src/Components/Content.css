@@ -255,6 +255,7 @@
   display: grid;
   gap: 0.4rem;
   margin: 1.75rem 0 0;
+  font-style: normal;
 }
 
 .contact__address strong {
@@ -265,6 +266,35 @@
 .contact__address span {
   color: #53708d;
   line-height: 1.6;
+}
+
+.contact__methods {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.contact__methods > a,
+.contact__methods > div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contact__methods span {
+  color: #53708d;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.contact__methods a {
+  color: #104c91;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.contact__methods a:focus-visible {
+  outline: 3px solid #e9a500;
+  outline-offset: 3px;
 }
 
 .contact__directions {

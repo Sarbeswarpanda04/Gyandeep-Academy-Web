@@ -19,6 +19,17 @@ const Footer = ({ onAdmissionClick, onNavigateHome }) => {
           </span>
         </a>
         <p>Learning today. Growing for tomorrow.</p>
+        <div className="site-footer__contacts">
+          <a href="mailto:gyandeep.ac.khordha@gmail.com">
+            gyandeep.ac.khordha@gmail.com
+          </a>
+          <a href="https://wa.me/916370464705" target="_blank" rel="noopener noreferrer">
+            WhatsApp: +91 6370464705
+          </a>
+          <a href="https://wa.me/918342916384" target="_blank" rel="noopener noreferrer">
+            WhatsApp: +91 8342916384
+          </a>
+        </div>
         <button type="button" onClick={onAdmissionClick}>
           Admission enquiry <span aria-hidden="true">→</span>
         </button>

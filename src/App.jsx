@@ -7,6 +7,8 @@ import AdmissionModal from "./Components/AdmissionModal";
 import Books from "./Components/Books";
 import NoticeBar from "./Components/Notice-bar";
 
+const SITE_ORIGIN = "https://gyandeepacademykhordha.sarbeswarpanda.in";
+
 const getCurrentRoute = () => {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const classMatch = path.match(/^\/books\/class-(6|7|8|9|10)$/);
@@ -42,14 +44,15 @@ const App = () => {
     const title =
       route.page === "books"
         ? `${classTitle} | Gyandeep Academy Khordha`
-        : "Gyandeep Academy Khordha | Classes 6–10";
+        : "Gyandeep Academy Khordha | Coaching Classes 5–10";
     const description =
       route.page === "books"
         ? route.classNumber
-          ? `Explore the book library for Class ${route.classNumber} at Gyandeep Academy in Khordha.`
-          : "Browse class-wise book resources for students at Gyandeep Academy in Khordha."
-        : "Gyandeep Academy in Khordha provides a welcoming learning environment for students in Classes 6 to 10.";
-    const canonicalUrl = `${window.location.origin}${window.location.pathname}`;
+          ? `Find books and learning resources for Class ${route.classNumber} at Gyandeep Academy in Khordha.`
+          : "Browse book resources for Classes 6 to 10 at Gyandeep Academy in Khordha."
+        : "Gyandeep Academy offers coaching classes for Classes 5 to 10 in Khordha, Odisha, for CBSE and BSE students.";
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    const canonicalUrl = `${SITE_ORIGIN}${path === "/" ? "/" : `${path}/`}`;
 
     document.title = title;
     const setMetaContent = (selector, attribute, attributeValue, content) => {
@@ -64,13 +67,21 @@ const App = () => {
 
     setMetaContent('meta[name="description"]', "name", "description", description);
     setMetaContent('meta[property="og:title"]', "property", "og:title", title);
+    setMetaContent('meta[name="twitter:title"]', "name", "twitter:title", title);
     setMetaContent(
       'meta[property="og:description"]',
       "property",
       "og:description",
       description
     );
+    setMetaContent(
+      'meta[name="twitter:description"]',
+      "name",
+      "twitter:description",
+      description
+    );
     setMetaContent('meta[property="og:url"]', "property", "og:url", canonicalUrl);
+    setMetaContent('meta[name="twitter:url"]', "name", "twitter:url", canonicalUrl);
 
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {

@@ -39,7 +39,14 @@ const NoticeBar = () => {
             </div>
             <div className="notice-bar__marquee">
                 <p className="notice-bar__text">
-                    📢 Admission Open for Classes 5 to 10! Contact:- 6370464705 / 8342916384
+                    📢 Admissions open for Classes 5 to 10! WhatsApp:{" "}
+                    <a href="https://wa.me/916370464705" target="_blank" rel="noopener noreferrer">
+                        +91 6370464705
+                    </a>
+                    {" / "}
+                    <a href="https://wa.me/918342916384" target="_blank" rel="noopener noreferrer">
+                        +91 8342916384
+                    </a>
                 </p>
             </div>
         </div>

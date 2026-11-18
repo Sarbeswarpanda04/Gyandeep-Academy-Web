@@ -70,7 +70,7 @@ const Navbar = ({
           <li><a href="#classes" onClick={(event) => handleSectionClick(event, "classes")}>Classes</a></li>
           <li>
             <a
-              href="#books"
+              href="/books/"
               onClick={handleBooksClick}
               aria-current={isBooksPage ? "page" : undefined}
               className="navbar__books-link"

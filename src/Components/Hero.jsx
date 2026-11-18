@@ -37,7 +37,7 @@ const Hero = ({ onAdmissionClick }) => {
           Gyandeep Academy <span>Khordha.</span>
         </h1>
         <p className="hero__description">
-          Coaching Classes in Khordha. for Class 5th to 10th CBSE and BSE.
+          Coaching classes in Khordha for Classes 5–10 (CBSE and BSE).
         </p>
         <div className="hero__actions">
           <button

@@ -50,6 +50,22 @@
   margin: 0;
 }
 
+.site-footer__contacts {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.site-footer__contacts a {
+  color: #bed8f1;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-footer__contacts a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .site-footer__main button {
   background: #f0b429;
   border: 0;

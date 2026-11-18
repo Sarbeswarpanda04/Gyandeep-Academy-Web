@@ -133,6 +133,21 @@ const Content = ({ onAdmissionClick }) => {
             <strong>Gyandeep Academy</strong>
             <span>Khordha, Odisha, India</span>
           </p>
+          <div className="contact__methods">
+            <a href="mailto:gyandeep.ac.khordha@gmail.com">
+              <span>Email</span>
+              <strong>gyandeep.ac.khordha@gmail.com</strong>
+            </a>
+            <div>
+              <span>WhatsApp</span>
+              <a href="https://wa.me/916370464705" target="_blank" rel="noopener noreferrer">
+                +91 6370464705
+              </a>
+              <a href="https://wa.me/918342916384" target="_blank" rel="noopener noreferrer">
+                +91 8342916384
+              </a>
+            </div>
+          </div>
           <a
             className="contact__directions"
             href="https://www.google.com/maps/search/?api=1&query=Gyandeep+Academy+Khordha"
