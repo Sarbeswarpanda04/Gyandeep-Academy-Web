@@ -42,7 +42,7 @@ const books = [
   {
     classNumber: 7,
     title: "Hindi",
-    thumbnail: "/book-thumbnails/Class-7/class-7-hindi.webp",
+    thumbnail: "/book-thumbnails/Class-7/class-7-hindi-kalika.webp",
     file: "https://osepa.odisha.gov.in/upload/ebooks/CLASS-VII/Hindi_Class_7_Final_Web.pdf",
     fileName: "Class-7-Hindi.pdf",
     source: "OSEPA Official",
