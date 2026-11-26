@@ -180,15 +180,6 @@
   line-height: 1;
 }
 
-.hero__button--secondary {
-  border-color: rgb(255 255 255 / 55%);
-  color: #fff;
-}
-
-.hero__button--secondary:hover {
-  background: rgb(255 255 255 / 12%);
-  border-color: #fff;
-}
 .hero__students-label {
   color: #d3e2f2;
   font-size: 0.95rem;

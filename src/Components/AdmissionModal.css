@@ -1,25 +1,27 @@
 .admission-modal__backdrop {
   align-items: center;
   animation: modal-fade-in 180ms ease both;
-  background: rgb(5 26 58 / 62%);
+  backdrop-filter: blur(6px);
+  background: rgb(5 26 58 / 65%);
   display: flex;
   inset: 0;
   justify-content: center;
   overflow-y: auto;
   padding: 1.25rem;
   position: fixed;
-  z-index: 20;
+  z-index: 50;
 }
 
 .admission-modal {
   animation: modal-rise-in 220ms ease both;
   background: #fafdff;
   border: 1px solid #d7e9f8;
+  border-top: 4px solid #f0b429;
   border-radius: 1.25rem;
-  box-shadow: 0 24px 80px rgb(3 23 54 / 32%);
+  box-shadow: 0 24px 80px rgb(3 23 54 / 35%);
   margin: auto;
   max-height: calc(100dvh - 2.5rem);
-  max-width: 560px;
+  max-width: 540px;
   overflow-y: auto;
   padding: clamp(1.4rem, 5vw, 2.25rem);
   position: relative;
@@ -41,12 +43,13 @@
   position: absolute;
   right: 1rem;
   top: 1rem;
-  transition: background-color 160ms ease;
+  transition: background-color 160ms ease, transform 160ms ease;
   width: 2.5rem;
 }
 
 .admission-modal__close:hover {
   background: #d8edff;
+  transform: scale(1.05);
 }
 
 .admission-modal__close:focus-visible,
@@ -55,18 +58,30 @@
   outline-offset: 3px;
 }
 
-.admission-modal__eyebrow {
+.admission-modal__badge {
+  align-items: center;
+  background: #eaf4ff;
+  border: 1px solid #d0e4f7;
+  border-radius: 999px;
   color: #174e91;
-  font-size: 0.78rem;
+  display: inline-flex;
+  font-size: 0.76rem;
   font-weight: 750;
-  letter-spacing: 0.1em;
-  margin: 0 3rem 0.6rem 0;
+  gap: 0.45rem;
+  letter-spacing: 0.08em;
+  margin: 0 3rem 0.85rem 0;
+  padding: 0.35rem 0.8rem;
   text-transform: uppercase;
+}
+
+.admission-modal__badge svg {
+  height: 0.9rem;
+  width: 0.9rem;
 }
 
 .admission-modal h2 {
   color: #092d63;
-  font-size: clamp(1.65rem, 5vw, 2.2rem);
+  font-size: clamp(1.6rem, 5vw, 2.15rem);
   letter-spacing: -0.035em;
   line-height: 1.15;
   margin: 0;
@@ -75,34 +90,40 @@
 
 .admission-modal__description {
   color: #53708d;
+  font-size: 0.96rem;
   line-height: 1.6;
-  margin: 0.75rem 0 1.5rem;
+  margin: 0.65rem 0 1.4rem;
 }
 
 .admission-form {
   display: grid;
-  gap: 1rem;
+  gap: 0.95rem;
 }
 
 .admission-form label {
   color: #173c68;
   display: grid;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .admission-form input,
 .admission-form select {
   background: #fff;
   border: 1px solid #b9d1e8;
-  border-radius: 0.55rem;
+  border-radius: 0.6rem;
   color: #102f5e;
   font: inherit;
-  font-size: 1rem;
+  font-size: 0.98rem;
   min-height: 2.9rem;
-  padding: 0.65rem 0.75rem;
+  padding: 0.6rem 0.8rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
   width: 100%;
+}
+
+.admission-form input::placeholder {
+  color: #8aa2bc;
 }
 
 .admission-form input:focus,
@@ -121,16 +142,18 @@
   align-items: center;
   background: #104c91;
   border: 0;
-  border-radius: 0.6rem;
+  border-radius: 0.65rem;
   color: #fff;
   cursor: pointer;
   display: flex;
   font: inherit;
+  font-size: 1rem;
   font-weight: 750;
-  gap: 0.65rem;
+  gap: 0.6rem;
   justify-content: center;
-  margin-top: 0.25rem;
-  min-height: 3rem;
+  margin-top: 0.35rem;
+  min-height: 3.15rem;
+  padding: 0.75rem 1.2rem;
   transition: background-color 160ms ease, transform 160ms ease;
 }
 
@@ -139,10 +162,22 @@
   transform: translateY(-1px);
 }
 
-.admission-form__submit span {
+.admission-form__submit svg {
+  color: #ffd05a;
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.admission-form__arrow {
   color: #ffd05a;
 }
 
+.admission-form__note {
+  color: #637f9c;
+  font-size: 0.8rem;
+  margin: -0.25rem 0 0;
+  text-align: center;
+}
 
 @keyframes modal-fade-in {
   from { opacity: 0; }
@@ -157,6 +192,7 @@
 @media (max-width: 480px) {
   .admission-modal__backdrop {
     align-items: flex-start;
+    padding: 1rem;
   }
 
   .admission-form__row {

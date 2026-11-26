@@ -162,9 +162,6 @@ const Hero = ({ onAdmissionClick }) => {
           >
             Admission Now <span aria-hidden="true">→</span>
           </button>
-          <a className="hero__button hero__button--secondary" href="#about">
-            Discover Gyandeep
-          </a>
         </div>
       </div>
 
