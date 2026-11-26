@@ -1,19 +1,21 @@
 .hero {
-  align-items: center;
+  align-items: flex-start;
   background: #061a37;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
-  padding: clamp(3.5rem, 8vw, 7rem) clamp(1.5rem, 8vw, 7.5rem);
+  padding: clamp(4.5rem, 8vw, 6.5rem) clamp(1.5rem, 8vw, 7.5rem) 1.5rem;
   position: relative;
   width: 100%;
 }
 
 .hero::after {
   background:
-    linear-gradient(0deg, #061a37 0%, rgb(6 26 55 / 35%) 18%, transparent 55%),
-    linear-gradient(90deg, #061a37 0%, rgb(6 26 55 / 95%) 25%, rgb(6 26 55 / 74%) 43%, rgb(6 26 55 / 18%) 72%, transparent 100%);
+    linear-gradient(0deg, rgb(6 26 55 / 85%) 0%, rgb(6 26 55 / 22%) 20%, transparent 52%),
+    linear-gradient(90deg, rgb(6 26 55 / 82%) 0%, rgb(6 26 55 / 62%) 26%, rgb(6 26 55 / 38%) 46%, rgb(6 26 55 / 8%) 70%, transparent 100%);
   content: "";
   inset: 0;
   pointer-events: none;
@@ -45,7 +47,7 @@
 
 .hero__indicators {
   align-items: center;
-  bottom: 1.25rem;
+  bottom: 8.25rem;
   display: flex;
   gap: 0.45rem;
   position: absolute;
@@ -77,6 +79,7 @@
 .hero__copy {
   animation: hero-rise-in 650ms ease both;
   color: #fff;
+  margin: auto 0;
   max-width: 620px;
   position: relative;
   width: 55%;
@@ -186,12 +189,94 @@
   background: rgb(255 255 255 / 12%);
   border-color: #fff;
 }
-
+.hero__students-label {
+  color: #d3e2f2;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 1.5rem 0 0;
+  margin-bottom: 0.75rem;
+}
 .hero__promise {
   color: #d3e2f2;
   font-size: 0.95rem;
   font-weight: 600;
   margin: 1.5rem 0 0;
+}
+/* Larger Marquee */
+.hero__marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  overflow: hidden;
+  padding: 0.65rem 0;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.hero__marquee-track {
+  animation: hero-marquee-ltr 34s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.hero__marquee:hover .hero__marquee-track {
+  animation-play-state: paused;
+}
+
+.hero__marquee-group {
+  display: flex;
+  gap: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.hero__student {
+  align-items: center;
+  backdrop-filter: blur(8px);
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 999px;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.85rem;
+  padding: 0.45rem 1.35rem 0.45rem 0.45rem;
+}
+
+.hero__student-avatar {
+  border: 2.5px solid #ffd05a;
+  border-radius: 50%;
+  height: 3.75rem;
+  object-fit: cover;
+  width: 3.75rem;
+}
+
+.hero__student-avatar--fallback {
+  align-items: center;
+  background: linear-gradient(135deg, #163b70 0%, #0b2247 100%);
+  color: #ffd05a;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+  font-weight: 800;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.hero__student-name {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@keyframes hero-marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes hero-rise-in {
@@ -235,56 +320,128 @@
     align-items: stretch;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 0 0 1.75rem;
+    min-height: auto;
+    padding: 5.5rem 0 2.25rem;
   }
 
   .hero::after {
-    background: linear-gradient(180deg, rgb(6 26 55 / 8%) 0%, rgb(6 26 55 / 28%) 28%, rgb(6 26 55 / 88%) 62%, #061a37 100%);
+    content: none;
   }
 
-  .hero__image {
-    object-position: center 35%;
-  }
-
-  .hero__copy {
-    max-width: none;
-    margin-top: auto;
-    padding: 1.75rem 1.25rem 1rem;
+  .hero__carousel {
+    aspect-ratio: 16 / 9;
+    flex: 0 0 auto;
+    inset: auto;
+    max-height: 50svh;
+    min-height: 0;
+    position: relative;
+    touch-action: pan-y;
     width: 100%;
   }
 
+  .hero__carousel::after {
+    background: linear-gradient(
+      180deg,
+      #061a37 0%,
+      rgb(6 26 55 / 35%) 10%,
+      transparent 24%,
+      transparent 58%,
+      rgb(6 26 55 / 72%) 84%,
+      #061a37 100%
+    );
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .hero__image {
+    object-position: center top;
+  }
+
   .hero__indicators {
-    bottom: auto;
-    right: 0.85rem;
-    top: 45%;
+    bottom: 0.75rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .hero__copy {
+    margin: 0.35rem 0 0;
+    max-width: none;
+    padding: 0 1.25rem;
+    width: 100%;
   }
 
   .hero__eyebrow {
     font-size: 0.78rem;
+    margin-bottom: 0.85rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.3rem, 10.5vw, 3.6rem);
+    font-size: clamp(2.15rem, 9.5vw, 3rem);
   }
 
   .hero__description {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-top: 0.9rem;
   }
 
   .hero__actions {
     align-items: stretch;
     flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
   }
 
   .hero__button {
+    min-height: 3.15rem;
     width: 100%;
+  }
+
+  .hero__promise {
+    font-size: 0.88rem;
+    margin-top: 1.15rem;
+  }
+
+
+  .hero__marquee-group {
+    gap: 0.9rem;
+    padding-right: 0.9rem;
+  }
+
+  .hero__student {
+    gap: 0.7rem;
+    padding: 0.35rem 1.05rem 0.35rem 0.35rem;
+  }
+
+  .hero__student-avatar {
+    height: 3.1rem;
+    width: 3.1rem;
+  }
+
+  .hero__student-avatar--fallback {
+    font-size: 1.05rem;
+  }
+
+  .hero__student-name {
+    font-size: 0.95rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero__image--active {
+    animation: none;
+  }
+
+  .hero__marquee {
+    overflow-x: auto;
+  }
+
+  .hero__marquee-track {
     animation: none;
   }
 }

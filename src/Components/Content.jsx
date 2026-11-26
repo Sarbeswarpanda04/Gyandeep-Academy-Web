@@ -1,26 +1,80 @@
+import { useState } from "react";
 import "./Content.css";
+
+const SparkIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 3l1.9 5.8L20 10.7l-5.2 3.7L16.7 20 12 16.5 7.3 20l1.9-5.6L4 10.7l6.1-1.9Z" />
+  </svg>
+);
+
+const CompassIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+
+const TargetIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="6" />
+    <circle cx="12" cy="12" r="2" />
+  </svg>
+);
+
+const BookIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+  </svg>
+);
+
+const MapPinIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+const WhatsAppIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+  </svg>
+);
 
 const highlights = [
   {
     title: "Clear foundations",
     description: "Make room for understanding, practice, and steady progress.",
+    Icon: SparkIcon,
   },
   {
     title: "Curiosity encouraged",
     description: "Ask questions, explore ideas, and learn with confidence.",
+    Icon: CompassIcon,
   },
   {
     title: "Ready for what’s next",
     description: "Build skills that help students move forward with purpose.",
+    Icon: TargetIcon,
   },
 ];
 
 const classes = [
-  { name: "Class 6", title: "Build strong foundations" },
-  { name: "Class 7", title: "Learn through discovery" },
-  { name: "Class 8", title: "Grow skills and confidence" },
-  { name: "Class 9", title: "Prepare for new challenges" },
-  { name: "Class 10", title: "Take the next step with confidence" },
+  { name: "Class 5", title: "Spark early curiosity", track: "Foundation" },
+  { name: "Class 6", title: "Build strong foundations", track: "Foundation" },
+  { name: "Class 7", title: "Learn through discovery", track: "Foundation" },
+  { name: "Class 8", title: "Grow skills and confidence", track: "Pre-Board" },
+  { name: "Class 9", title: "Prepare for new challenges", track: "Board Track" },
+  { name: "Class 10", title: "Take the next step with confidence", track: "Board Track" },
 ];
 
 const teachers = [
@@ -33,6 +87,14 @@ const teachers = [
 ];
 
 const Content = ({ onAdmissionClick }) => {
+  const [failedTeachers, setFailedTeachers] = useState({});
+
+  const markTeacherImageFailed = (teacherName) => {
+    setFailedTeachers((prev) =>
+      prev[teacherName] ? prev : { ...prev, [teacherName]: true }
+    );
+  };
+
   return (
     <>
       <section className="about section-wrap" id="about" aria-labelledby="about-title">
@@ -47,14 +109,20 @@ const Content = ({ onAdmissionClick }) => {
             develop confidence, and take pride in every step forward.
           </p>
         </div>
+
         <div className="about__highlights">
-          {highlights.map((highlight, index) => (
-            <article className="highlight-card" key={highlight.title}>
-              <span className="highlight-card__number" aria-hidden="true">
-                0{index + 1}
-              </span>
-              <h3>{highlight.title}</h3>
-              <p>{highlight.description}</p>
+          {highlights.map(({ title, description, Icon }, index) => (
+            <article className="highlight-card" key={title}>
+              <div className="highlight-card__top">
+                <span className="highlight-card__icon">
+                  <Icon />
+                </span>
+                <span className="highlight-card__number" aria-hidden="true">
+                  0{index + 1}
+                </span>
+              </div>
+              <h3>{title}</h3>
+              <p>{description}</p>
             </article>
           ))}
         </div>
@@ -66,22 +134,40 @@ const Content = ({ onAdmissionClick }) => {
           <h2 className="section-title" id="teachers-title">
             Meet our <span>teachers.</span>
           </h2>
+          <p className="section-copy">
+            Dedicated mentors guiding students with clarity, patience, and
+            consistent attention.
+          </p>
         </div>
+
         <div className="teachers__grid">
-          {teachers.map((teacher) => (
-            <article className="teacher-card" key={teacher.name}>
-              <div className="teacher-card__portrait">
-                {teacher.imageUrl ? (
-                  <img src={teacher.imageUrl} alt={teacher.name} />
-                ) : (
-                  <span role="img" aria-label={`Placeholder portrait for ${teacher.name}`}>
-                    {teacher.initials}
-                  </span>
-                )}
-              </div>
-              <h3>{teacher.name}</h3>
-            </article>
-          ))}
+          {teachers.map((teacher) => {
+            const showPhoto =
+              teacher.imageUrl && !failedTeachers[teacher.name];
+
+            return (
+              <article className="teacher-card" key={teacher.name}>
+                <div className="teacher-card__portrait">
+                  {showPhoto ? (
+                    <img
+                      src={teacher.imageUrl}
+                      alt={teacher.name}
+                      loading="lazy"
+                      onError={() => markTeacherImageFailed(teacher.name)}
+                    />
+                  ) : (
+                    <span
+                      role="img"
+                      aria-label={`Portrait placeholder for ${teacher.name}`}
+                    >
+                      {teacher.initials}
+                    </span>
+                  )}
+                </div>
+                <h3>{teacher.name}</h3>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -91,24 +177,32 @@ const Content = ({ onAdmissionClick }) => {
             <div>
               <p className="section-eyebrow">Learning for every next step</p>
               <h2 className="section-title" id="classes-title">
-                Classes <span>6 to 10</span>
+                Classes <span>5 to 10</span>
               </h2>
             </div>
             <p className="section-copy">
-              A welcoming learning environment for students from Class 6 through
+              Structured coaching for CBSE and BSE students from Class 5 through
               Class 10.
             </p>
           </div>
+
           <div className="classes__grid">
             {classes.map((item, index) => (
               <article className="class-card" key={item.name}>
-                <span className="class-card__index">0{index + 1}</span>
+                <div className="class-card__top">
+                  <span className="class-card__index">0{index + 1}</span>
+                  <span className="class-card__pill">
+                    <BookIcon />
+                    {item.track}
+                  </span>
+                </div>
                 <p>{item.name}</p>
                 <h3>{item.title}</h3>
                 <span className="class-card__line" aria-hidden="true" />
               </article>
             ))}
           </div>
+
           <button
             className="content-cta"
             type="button"
@@ -126,37 +220,71 @@ const Content = ({ onAdmissionClick }) => {
             Find us in <span>Khordha.</span>
           </h2>
           <p className="section-copy">
-            Visit Gyandeep Academy or get in touch to learn more about classes
-            and admissions.
+            Visit Gyandeep Academy or get in touch to learn more about classes,
+            batches, and admissions.
           </p>
-          <p className="contact__address">
-            <strong>Gyandeep Academy</strong>
-            <span>Khordha, Odisha, India</span>
-          </p>
-          <div className="contact__methods">
-            <a href="mailto:gyandeep.ac.khordha@gmail.com">
-              <span>Email</span>
-              <strong>gyandeep.ac.khordha@gmail.com</strong>
+
+          <div className="contact__cards">
+            <div className="contact__card">
+              <span className="contact__card-icon">
+                <MapPinIcon />
+              </span>
+              <div className="contact__card-body">
+                <span className="contact__card-label">Address</span>
+                <strong>Gyandeep Academy</strong>
+                <span className="contact__card-sub">Khordha, Odisha, India</span>
+              </div>
+            </div>
+
+            <a
+              className="contact__card contact__card--link"
+              href="mailto:gyandeep.ac.khordha@gmail.com"
+            >
+              <span className="contact__card-icon">
+                <MailIcon />
+              </span>
+              <div className="contact__card-body">
+                <span className="contact__card-label">Email</span>
+                <strong>gyandeep.ac.khordha@gmail.com</strong>
+              </div>
             </a>
-            <div>
-              <span>WhatsApp</span>
-              <a href="https://wa.me/916370464705" target="_blank" rel="noopener noreferrer">
-                +91 6370464705
-              </a>
-              <a href="https://wa.me/918342916384" target="_blank" rel="noopener noreferrer">
-                +91 8342916384
-              </a>
+
+            <div className="contact__card">
+              <span className="contact__card-icon">
+                <WhatsAppIcon />
+              </span>
+              <div className="contact__card-body">
+                <span className="contact__card-label">WhatsApp</span>
+                <div className="contact__whatsapp-links">
+                  <a
+                    href="https://wa.me/916370464705"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +91 6370464705
+                  </a>
+                  <a
+                    href="https://wa.me/918342916384"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +91 8342916384
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
+
           <a
             className="contact__directions"
             href="https://www.google.com/maps/search/?api=1&query=Gyandeep+Academy+Khordha"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             Get directions <span aria-hidden="true">↗</span>
           </a>
         </div>
+
         <div className="contact__map">
           <iframe
             title="Map showing Gyandeep Academy in Khordha"

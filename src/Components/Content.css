@@ -45,17 +45,40 @@
 }
 
 .highlight-card {
-  background: rgb(255 255 255 / 72%);
+  background: rgb(255 255 255 / 80%);
   border: 1px solid #d5e9fb;
   border-radius: 1rem;
-  min-height: 190px;
+  min-height: 195px;
   padding: 1.5rem;
-  transition: box-shadow 180ms ease, transform 180ms ease;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .highlight-card:hover {
+  border-color: #9ec6ee;
   box-shadow: 0 14px 28px rgb(16 47 94 / 9%);
   transform: translateY(-4px);
+}
+
+.highlight-card__top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.highlight-card__icon {
+  align-items: center;
+  background: #eaf4ff;
+  border-radius: 0.7rem;
+  color: #174e91;
+  display: inline-flex;
+  height: 2.5rem;
+  justify-content: center;
+  width: 2.5rem;
+}
+
+.highlight-card__icon svg {
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
 .highlight-card__number {
@@ -68,7 +91,7 @@
 .highlight-card h3 {
   color: #123b76;
   font-size: 1.25rem;
-  margin: 1rem 0 0.5rem;
+  margin: 1.1rem 0 0.5rem;
 }
 
 .highlight-card p {
@@ -78,7 +101,7 @@
 }
 
 .teachers__intro {
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
 .teachers__grid {
@@ -100,12 +123,24 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.teacher-card:hover .teacher-card__portrait {
+  border-color: #9ec6ee;
+  box-shadow: 0 14px 26px rgb(16 47 94 / 10%);
 }
 
 .teacher-card__portrait img {
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  transition: transform 240ms ease;
   width: 100%;
+}
+
+.teacher-card:hover .teacher-card__portrait img {
+  transform: scale(1.04);
 }
 
 .teacher-card__portrait span {
@@ -145,13 +180,13 @@
 
 .classes__heading .section-copy {
   margin: 0 0 0.25rem;
-  max-width: 410px;
+  max-width: 420px;
 }
 
 .classes__grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.15rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 2.5rem;
 }
 
@@ -160,9 +195,9 @@
   border: 1px solid #d8e9f8;
   border-radius: 1rem;
   box-shadow: 0 8px 22px rgb(16 47 94 / 5%);
-  min-height: 210px;
+  min-height: 195px;
   overflow: hidden;
-  padding: 1.25rem;
+  padding: 1.35rem;
   position: relative;
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
@@ -172,6 +207,12 @@
   transform: translateY(-5px);
 }
 
+.class-card__top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .class-card__index {
   color: #8fb9e1;
   font-size: 0.8rem;
@@ -179,16 +220,34 @@
   letter-spacing: 0.1em;
 }
 
+.class-card__pill {
+  align-items: center;
+  background: #eff7ff;
+  border: 1px solid #d3e7f9;
+  border-radius: 999px;
+  color: #174e91;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+}
+
+.class-card__pill svg {
+  height: 0.82rem;
+  width: 0.82rem;
+}
+
 .class-card p {
   color: #174e91;
   font-size: 1.05rem;
   font-weight: 750;
-  margin: 1.7rem 0 0.55rem;
+  margin: 1.35rem 0 0.45rem;
 }
 
 .class-card h3 {
   color: #123b76;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1.4;
   margin: 0;
 }
@@ -221,8 +280,8 @@
   font-size: 1rem;
   font-weight: 700;
   gap: 0.75rem;
-  margin: 2rem auto 0;
-  padding: 0.95rem 1.25rem;
+  margin: 2.25rem auto 0;
+  padding: 0.95rem 1.35rem;
   transition: background-color 160ms ease, transform 160ms ease;
 }
 
@@ -233,8 +292,8 @@
 
 .content-cta:focus-visible,
 .contact__directions:focus-visible,
-.site-footer a:focus-visible,
-.site-footer button:focus-visible {
+.contact__card--link:focus-visible,
+.contact__whatsapp-links a:focus-visible {
   outline: 3px solid #e9a500;
   outline-offset: 4px;
 }
@@ -248,88 +307,133 @@
   align-items: center;
   display: grid;
   gap: clamp(2rem, 6vw, 5rem);
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
 }
 
-.contact__address {
+.contact__cards {
   display: grid;
-  gap: 0.4rem;
-  margin: 1.75rem 0 0;
-  font-style: normal;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
 }
 
-.contact__address strong {
+.contact__card {
+  align-items: flex-start;
+  background: #f6faff;
+  border: 1px solid #d5e9fb;
+  border-radius: 0.95rem;
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.95rem 1.1rem;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.contact__card--link:hover {
+  border-color: #8fb9e1;
+  box-shadow: 0 8px 20px rgb(16 47 94 / 7%);
+}
+
+.contact__card-icon {
+  align-items: center;
+  background: #e5f1ff;
+  border-radius: 0.65rem;
+  color: #174e91;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 2.4rem;
+  justify-content: center;
+  width: 2.4rem;
+}
+
+.contact__card-icon svg {
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.contact__card-body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.contact__card-label {
+  color: #53708d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.contact__card-body strong {
   color: #123b76;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
+  word-break: break-word;
 }
 
-.contact__address span {
+.contact__card-sub {
   color: #53708d;
-  line-height: 1.6;
+  font-size: 0.92rem;
 }
 
-.contact__methods {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.25rem;
+.contact__whatsapp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
 }
 
-.contact__methods > a,
-.contact__methods > div {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.contact__methods span {
-  color: #53708d;
-  font-size: 0.9rem;
-  font-weight: 650;
-}
-
-.contact__methods a {
+.contact__whatsapp-links a {
   color: #104c91;
+  font-size: 0.96rem;
   font-weight: 700;
   text-underline-offset: 3px;
 }
 
-.contact__methods a:focus-visible {
-  outline: 3px solid #e9a500;
-  outline-offset: 3px;
+.contact__whatsapp-links a:hover {
+  color: #092d63;
 }
 
 .contact__directions {
   align-items: center;
+  background: #eaf4ff;
+  border: 1px solid #c7e0f7;
+  border-radius: 0.65rem;
   color: #104c91;
   display: inline-flex;
   font-weight: 750;
   gap: 0.5rem;
   margin-top: 1.25rem;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  padding: 0.7rem 1.1rem;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.contact__directions:hover {
+  background: #dbeeff;
+  transform: translateY(-2px);
 }
 
 .contact__map {
   border: 6px solid #fff;
   border-radius: 1.25rem;
   box-shadow: 0 18px 42px rgb(16 47 94 / 12%);
-  min-height: 350px;
+  min-height: 360px;
   overflow: hidden;
 }
 
 .contact__map iframe {
   border: 0;
   display: block;
-  height: 380px;
+  height: 400px;
   width: 100%;
 }
 
 @media (max-width: 1000px) {
-  .classes__grid {
+  .teachers__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .teachers__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .classes__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -357,10 +461,6 @@
     gap: 0.5rem;
   }
 
-  .classes__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .contact {
     grid-template-columns: 1fr;
   }
@@ -376,6 +476,6 @@
   }
 
   .class-card {
-    min-height: 175px;
+    min-height: 170px;
   }
 }
